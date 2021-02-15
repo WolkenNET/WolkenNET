@@ -24,7 +24,7 @@ public class Dashboard implements Route {
 	}
 
 	public Object handle(Request request, Response response) throws Exception {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		m.put("titlebar", "AP Dashboard");
 		m.put("sessionviews", App.sessionViews + "");
 		m.put("sessionsql", App.sessionSQL + "");

@@ -17,7 +17,7 @@ public class addFriend implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		if(Permissions.hasPermissions(request.cookie("session"), this.m, response) == false) {
+		if(Permissions.hasPermissions(request, this.m, response) == false) {
 			// TODO: JSON Response
 			return null;
 		}

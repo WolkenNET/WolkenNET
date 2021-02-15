@@ -25,7 +25,7 @@ public class profileSettings implements Route {
 	public Object handle(Request request, Response response) {
 		m.put("l", 4);
 		try {
-			Permissions.hasPermissions(request.cookie("session"), this.m, response);
+			Permissions.hasPermissions(request, this.m, response);
 			m.put("banner", "/img/banner/wolken2.jpg");
 			String userName = request.params("user").replaceAll("%20", " ");
 			m.put("titlebar", "Profil von " + userName);

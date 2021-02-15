@@ -13,7 +13,7 @@ public class HandleTopic implements Route {
   
   public Object handle(Request request, Response response) {
     Map<String, Object> m = new HashMap<>();
-    Permissions.hasPermissions(request.cookie("session"), m, response);
+    Permissions.hasPermissions(request, m, response);
     
     if (!((String) m.get("permissions")).equals("10")) {
         response.redirect("/");

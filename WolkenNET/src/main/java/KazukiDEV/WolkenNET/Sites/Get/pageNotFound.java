@@ -21,7 +21,7 @@ public class pageNotFound implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		m.put("titlebar", "Seite nicht gefunden");
 		m.put("banner", "/img/banner/wolken2.jpg");
 

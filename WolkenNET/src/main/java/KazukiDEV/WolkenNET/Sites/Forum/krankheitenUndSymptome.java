@@ -25,7 +25,7 @@ public class krankheitenUndSymptome implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		m.put("titlebar", "Krankheiten & Symptome");
 		m.put("banner", "/img/banner/wolken4.jpg");
 		

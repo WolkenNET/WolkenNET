@@ -23,7 +23,7 @@ public class postContribution implements Route {
 	public Map<String, Object> m = new HashMap<>();
 
 	public Object handle(Request request, Response response) {
-		if(Permissions.hasPermissions(request.cookie("session"), this.m, response) == false) {
+		if(Permissions.hasPermissions(request, this.m, response) == false) {
 			//TODO: Login Fenster öffnen
 			response.redirect("/");
 			return null;

@@ -21,7 +21,7 @@ public class Telefonseelsorge implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		m.put("titlebar", "Telefonseelsorge");
 		m.put("banner", "/img/banner/wellis.jpg");
 		try {

@@ -21,7 +21,7 @@ public class Impressum implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		m.put("titlebar", "Impressum");
 		m.put("banner", "/img/banner/impressum.jpg");
 

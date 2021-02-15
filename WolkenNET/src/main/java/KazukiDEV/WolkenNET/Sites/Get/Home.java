@@ -24,7 +24,7 @@ public class Home implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		m.put("titlebar", "Home");
 		m.put("banner", "/img/banner/home.jpg");
 

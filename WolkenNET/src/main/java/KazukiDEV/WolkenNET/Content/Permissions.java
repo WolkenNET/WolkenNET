@@ -8,49 +8,56 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import KazukiDEV.WolkenNET.Main.App;
+import spark.Request;
 import spark.Response;
 
 public class Permissions {
 
-	public static boolean hasPermissions(String cookie, Map<String, Object> map, Response r) {
-		r.type("text/html");
+	public static boolean hasPermissions(Request req, Map<String, Object> map, Response res) {
+		res.type("text/html");
 		App.sessionViews++;
+		String cookie = req.cookie("session");
+		String agent = req.headers("user-agent");
 		try {
-			String sql_settings = "SELECT * FROM `system_settings`";
-			ResultSet sql_rs = mysql.Query(sql_settings);
-
-			while (sql_rs.next()) {
-				int i = sql_rs.getInt("id");
+			String settingsSQL = "SELECT * FROM `system_settings`";
+			ResultSet settingsRS = mysql.Query(settingsSQL);
+			while (settingsRS.next()) {
+				int i = settingsRS.getInt("id");
 				if (i == 1) {
-					map.put("recaptcha", sql_rs.getString("value_string"));
+					map.put("recaptcha", settingsRS.getString("value_string"));
 				} else if (i == 2) {
-					map.put("registrations", sql_rs.getInt("value_int"));
+					map.put("registrations", settingsRS.getInt("value_int"));
 				} else if (i == 3) {
-					map.put("home_alert", sql_rs.getString("value_string"));
+					map.put("home_alert", settingsRS.getString("value_string"));
 				} else if (i == 4) {
-					map.put("home_bool", sql_rs.getInt("value_int"));
+					map.put("home_bool", settingsRS.getInt("value_int"));
 				}
 			}
-
-			String sql = "SELECT * FROM `users` WHERE `session` = ? AND `banned` = 0";
-			ResultSet rs = mysql.Query(sql, cookie);
-			if (rs.next()) {
-				map.put("username", rs.getString("username"));
-				map.put("avatar", rs.getString("avatar"));
-				map.put("userid", Integer.valueOf(rs.getInt("id")));
-				map.put("useridst", new StringBuilder().append(rs.getInt("id")).toString());
-				map.put("permissions", rs.getString("permissions"));
-				map.put("loggedin", "true");
-				TimeZone tz = TimeZone.getTimeZone("UTC");
-				DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-				df.setTimeZone(tz);
-				String nowAsISO = df.format(new Date());
-				//TODO: Last login update
-				mysql.Exec("UPDATE `users` SET `last_login`=? WHERE `id` = ?", nowAsISO, rs.getInt("id")+"");
-				return true;
+			if(!(cookie == null)) {
+				if(!(cookie == "")) {
+					sessionHandler sess = new sessionHandler(cookie, agent);
+					if(sess.checkSession() == true)  {
+						int uid = sess.userid;
+						String userSQL = "SELECT `username`,`permissions`,`banned`,`avatar` FROM `users` WHERE `id` = ?";
+						ResultSet userRS = mysql.Query(userSQL, uid+"");
+						while(userRS.next()) {
+							if(userRS.getBoolean("banned") == false) {
+								map.put("username", userRS.getString("username"));
+								map.put("avatar", userRS.getString("avatar"));
+								map.put("userid", uid);
+								map.put("useridst", uid+"");
+								map.put("permissions", userRS.getString("permissions"));
+								map.put("loggedin", "true");
+								TimeZone tz = TimeZone.getTimeZone("UTC");
+								DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");df.setTimeZone(tz);String lastLogin = df.format(new Date());
+								mysql.Exec("UPDATE `users` SET `last_login`=? WHERE `id` = ?", lastLogin, uid+"");
+								return true;
+							}
+						}
+					}
+				}
 			}
-
-		} catch (Exception e) {
+		}catch(Exception e) {
 			new errorManager(e);
 			e.printStackTrace();
 		}
@@ -58,7 +65,6 @@ public class Permissions {
 		map.put("permissions", "0");
 		map.put("userid", Integer.valueOf(0));
 		map.put("useridst", "");
-
 		return false;
 	}
 

@@ -11,7 +11,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import KazukiDEV.WolkenNET.Content.Auth;
 import KazukiDEV.WolkenNET.Content.SMTPAuthenticator;
 import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
@@ -44,7 +43,7 @@ public class pwReset implements Route {
 		ResultSet mailRS = mysql.Query(mailSQL, request.queryParams("email"));
 		try {
 			while(mailRS.next()) {
-				String resetKey = Auth.generateSessionCookie();
+				String resetKey = KazukiDEV.WolkenNET.Content.sessionHandler.randomString(30);
 				String insertResetKeySQL = "INSERT INTO `reset_keys`(`id`, `key`) VALUES (?,?)";
 				mysql.Exec(insertResetKeySQL, mailRS.getInt("id") + "", resetKey);
 				

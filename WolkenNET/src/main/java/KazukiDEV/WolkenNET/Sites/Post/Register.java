@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import KazukiDEV.WolkenNET.Content.Auth;
 import KazukiDEV.WolkenNET.Content.Permissions;
 import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
@@ -34,7 +33,7 @@ public class Register implements Route {
 
 	public Object handle(Request request, Response response) {
 		HashMap<String, Object> m = new HashMap<>();
-		if(Permissions.hasPermissions(request.cookie("session"), m, response)) {
+		if(Permissions.hasPermissions(request, m, response)) {
 			response.redirect("/");
 			return null;
 		}
@@ -77,8 +76,6 @@ public class Register implements Route {
 				return null;
 			}
 	
-			String session = Auth.generateSessionCookie();
-			
 			String sql_us_ch = "SELECT * FROM `users` WHERE `username` = ?";
 			ResultSet rs_us_ch = mysql.Query(sql_us_ch, username);
 			
@@ -116,8 +113,8 @@ public class Register implements Route {
 		    String extraSQL = "INSERT INTO `users_extra`(`bbcode_text`) VALUES (?)";
 		    mysql.Exec(extraSQL, "");
 	
-			String sql = "INSERT INTO `users`(`username`, `email`, `password_md5`, `registered_on`, `last_login`, `country`, `permissions`, `avatar`, `session`) VALUES (?,?,?,?,?,?,?,?,?)";
-			mysql.Exec(sql, username, email, MD5(password), date.toString(), "", country, "1", 1+"", session);
+			String sql = "INSERT INTO `users`(`username`, `email`, `password_md5`, `registered_on`, `last_login`, `country`, `permissions`, `avatar`) VALUES (?,?,?,?,?,?,?,?)";
+			mysql.Exec(sql, username, email, MD5(password), date.toString(), "", country, "1", 1+"");
 			response.redirect("/?open=login");
 			return "";
 		}catch(Exception e) {

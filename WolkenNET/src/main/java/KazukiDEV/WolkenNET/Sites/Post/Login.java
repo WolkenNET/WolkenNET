@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import KazukiDEV.WolkenNET.Content.sessionHandler;
 import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Content.reCaptcha;
@@ -40,18 +41,21 @@ public class Login implements Route {
 			ResultSet rs = mysql.Query(loginSQL, email, MD5(password));
 			int i = 0;
 			while (rs.next()) {
+				sessionHandler login = new sessionHandler(rs.getInt("id"), request.headers("user-agent"));
 				if (rs.getBoolean("banned") == true) {
 					response.redirect("/?l=lub&open=login");
 					return null;
 				}
 				i++;
-				response.cookie("session", rs.getString("session"));
+				response.cookie("session", login.getToken());
 				String lastLoginSQL = "UPDATE `users` SET `last_login`= ? WHERE `id` = ?";
 				TimeZone tz = TimeZone.getTimeZone("UTC");
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
 				df.setTimeZone(tz);
 				String nowAsISO = df.format(new Date());
 				mysql.Exec(lastLoginSQL, nowAsISO, rs.getInt("id") +"");
+				
+				
 				response.redirect("/");
 				return null;
 			}

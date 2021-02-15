@@ -16,7 +16,7 @@ public class deleteContribution implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 
 		if (!((String) m.get("permissions")).equals("10")) {
 			response.redirect("/");

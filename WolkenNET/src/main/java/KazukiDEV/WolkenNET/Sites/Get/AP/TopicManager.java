@@ -30,7 +30,7 @@ public class TopicManager implements Route {
 	public Object handle(Request request, Response response) {
 		m.put("titlebar", "AP Themen Manager");
 
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		if (!((String) m.get("permissions")).equals("10")) {
 			response.redirect("/");
 			return null;

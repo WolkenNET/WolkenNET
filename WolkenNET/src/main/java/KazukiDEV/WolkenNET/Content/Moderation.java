@@ -10,7 +10,7 @@ public class Moderation {
 	public static void BanUser(String username) {
 		u.s.println(u.warning + "The User " + Color.RED + username + Color.RESET + " was banned");
 		String ban_sql = "UPDATE `users` SET `banned`= true, `session` = ? WHERE `username` = ?";
-		mysql.Exec(ban_sql, Auth.generateSessionCookie(), username);
+		mysql.Exec(ban_sql, sessionHandler.randomString(30), username);
 	}
 	
 	public static void deleteContribution(int id) {

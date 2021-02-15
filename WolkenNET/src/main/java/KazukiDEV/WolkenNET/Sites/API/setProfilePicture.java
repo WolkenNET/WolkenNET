@@ -16,7 +16,7 @@ public class setProfilePicture implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		if(Permissions.hasPermissions(request.cookie("session"), this.m, response)) {
+		if(Permissions.hasPermissions(request, this.m, response)) {
 			int pb = Integer.parseInt(request.queryParams("pb"));
 			if(Math.max(1, pb) == Math.min(pb, 16)) {
 				String updateAvatarSQL = "UPDATE `users` SET `avatar`=? WHERE `id` = ?";

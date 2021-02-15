@@ -26,7 +26,7 @@ public class Beiträge implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		String cont = request.params(":cont").replaceAll("%20", " ");
 
 		String sql = "SELECT * FROM `contributions` WHERE `sublink` = ?";

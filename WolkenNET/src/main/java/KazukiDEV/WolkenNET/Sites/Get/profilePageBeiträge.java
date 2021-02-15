@@ -27,7 +27,7 @@ public class profilePageBeiträge implements Route {
 	public Object handle(Request request, Response response) {
 		m.put("l", 3);
 		try {
-			Permissions.hasPermissions(request.cookie("session"), this.m, response);
+			Permissions.hasPermissions(request, this.m, response);
 			m.put("banner", "/img/banner/wolken2.jpg");
 			String userName = request.params("user").replaceAll("%20", " ");
 			m.put("titlebar", "Beiträge von " + userName);

@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
-import KazukiDEV.WolkenNET.Content.Topic;
 import KazukiDEV.WolkenNET.Content.User;
 import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
@@ -31,7 +30,7 @@ public class UserManager implements Route {
 	public Object handle(Request request, Response response) {
 		m.put("titlebar", "AP User Manager");
 
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		if (!((String) m.get("permissions")).equals("10")) {
 			response.redirect("/");
 			return null;

@@ -27,7 +27,7 @@ public class Themen implements Route {
 	}
 
 	public Object handle(Request request, Response response) {
-		Permissions.hasPermissions(request.cookie("session"), this.m, response);
+		Permissions.hasPermissions(request, this.m, response);
 		
 		String afterSQL = "";
 		int page = 0;
