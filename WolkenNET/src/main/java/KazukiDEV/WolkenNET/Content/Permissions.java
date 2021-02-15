@@ -51,6 +51,7 @@ public class Permissions {
 			}
 
 		} catch (Exception e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		map.put("loggedin", "false");

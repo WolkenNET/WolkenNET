@@ -14,18 +14,23 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class verweise implements Route {
+public class passwordReset implements Route {
 	public Map<String, Object> m = new HashMap<>();
 
-	public verweise() {
+	public passwordReset() {
 	}
 
 	public Object handle(Request request, Response response) {
 		Permissions.hasPermissions(request.cookie("session"), this.m, response);
-		m.put("titlebar", "Verweise");
+		m.put("titlebar", "Setze dein Passwort zurück");
 		m.put("banner", "/img/banner/team.jpg");
+		
+		if(request.queryParams("s") != null) {
+			m.put("s", true);
+		}
+
 		try {
-			Template template = App.cfg.getTemplate("verweise.html");
+			Template template = App.cfg.getTemplate("pwreset.html");
 			Writer out = new StringWriter();
 			template.process(this.m, out);
 			return out.toString();

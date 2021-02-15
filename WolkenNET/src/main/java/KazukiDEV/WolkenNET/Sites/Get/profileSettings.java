@@ -8,6 +8,7 @@ import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.BBCode;
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -57,6 +58,7 @@ public class profileSettings implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (Exception e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Content.reCaptcha;
 import spark.Request;
@@ -41,6 +42,7 @@ public class postContribution implements Route {
 			}
 			
 		} catch (Exception e1) {
+			new errorManager(e1);
 			e1.printStackTrace();
 		}
 		
@@ -73,6 +75,7 @@ public class postContribution implements Route {
 			}
 			
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		

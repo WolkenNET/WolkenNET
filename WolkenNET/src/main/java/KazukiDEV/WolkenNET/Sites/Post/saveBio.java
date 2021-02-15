@@ -2,14 +2,11 @@ package KazukiDEV.WolkenNET.Sites.Post;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import spark.Request;
 import spark.Response;
@@ -47,6 +44,7 @@ public class saveBio implements Route {
 			response.redirect("/" + userName + "/settings");
 			return null;
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		return null;

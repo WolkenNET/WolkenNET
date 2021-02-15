@@ -5,6 +5,7 @@ import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Moderation;
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -27,6 +28,7 @@ public class banUser implements Route {
 		try {
 			Moderation.BanUser(uID);
 		} catch (NumberFormatException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 

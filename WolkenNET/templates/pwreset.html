@@ -1,0 +1,26 @@
+<#include "base.html">
+
+<#if s??>
+<div class="container">
+    <#if s = true>
+    <div class="alert alert-primary" role="alert">
+            Es wurde dir eine Email geschickt
+      </div>
+    </#if>
+</div>
+</#if>
+
+<div class="container container-home col-8-home col-8-imp">
+        
+        <h3>Du hast dein Passwort vergessen?</h3>
+        <p>Das ist hier tatsächlich kein Problem solange du noch Zugriff zu deiner angemeldeten Mail Adresse hast, solltest du keinen Zugriff mehr haben wende dich an die Mail Adresse <a href="mailto:info@wolkennet.de">info@wolkennet.de</a>
+        </p>
+        <form action="/pwreset" method="post" accept-charset="UTF-8">
+            <input type="email" name="email" class="form-control" placeholder="Email adresse eingeben">
+            <div class="cap-ff titlebox" id="captcha_container_post"></div>
+            <button type="submit"  type="button" class="btn btn-primary btn-sm btn-block"><i class="fas fa-key"></i> Schick mir eine Mail</button>
+        </form>
+    </div>
+    </div>
+  </div>
+    <#include "footer.html">

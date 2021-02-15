@@ -30,10 +30,12 @@ import KazukiDEV.WolkenNET.Sites.Get.Themen;
 import KazukiDEV.WolkenNET.Sites.Get.donationPage;
 import KazukiDEV.WolkenNET.Sites.Get.logout;
 import KazukiDEV.WolkenNET.Sites.Get.pageNotFound;
+import KazukiDEV.WolkenNET.Sites.Get.passwordReset;
 import KazukiDEV.WolkenNET.Sites.Get.profilePage;
 import KazukiDEV.WolkenNET.Sites.Get.profilePageBeiträge;
 import KazukiDEV.WolkenNET.Sites.Get.profilePageComments;
 import KazukiDEV.WolkenNET.Sites.Get.profileSettings;
+import KazukiDEV.WolkenNET.Sites.Get.teamPage;
 import KazukiDEV.WolkenNET.Sites.Get.verweise;
 import KazukiDEV.WolkenNET.Sites.Get.AP.Dashboard;
 import KazukiDEV.WolkenNET.Sites.Get.AP.SystemEinstellungen;
@@ -43,6 +45,7 @@ import KazukiDEV.WolkenNET.Sites.Post.Login;
 import KazukiDEV.WolkenNET.Sites.Post.Register;
 import KazukiDEV.WolkenNET.Sites.Post.postComment;
 import KazukiDEV.WolkenNET.Sites.Post.postContribution;
+import KazukiDEV.WolkenNET.Sites.Post.pwReset;
 import KazukiDEV.WolkenNET.Sites.Post.saveBio;
 import KazukiDEV.WolkenNET.Sites.Post.AP.HandleSettings;
 import KazukiDEV.WolkenNET.Sites.Post.AP.HandleTopic;
@@ -135,6 +138,8 @@ public class App {
 		
 		getroutes.put("/forenregeln", new Forenregeln());
 		getroutes.put("/404", new pageNotFound());
+		getroutes.put("/team", new teamPage());
+		getroutes.put("/passwordreset", new passwordReset());
 		getroutes.put("/verweise", new verweise());
 		getroutes.put("/support", new donationPage());
 		getroutes.put("/logout", new logout());
@@ -150,6 +155,7 @@ public class App {
 		postroutes.put("/add/contribution", new postContribution());
 		postroutes.put("/add/comment", new postComment());
 		postroutes.put("/update/bio", new saveBio());
+		postroutes.put("/pwreset", new pwReset());
 
 		postroutes.put("/ap/topic", new HandleTopic());
 		postroutes.put("/ap/settings", new HandleSettings());

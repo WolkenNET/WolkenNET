@@ -10,6 +10,7 @@ import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
 import KazukiDEV.WolkenNET.Content.Topic;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -34,6 +35,7 @@ public class Tippsundtricks implements Route {
 		// Pagination
 		String afterSQL = "";
 		int page = 0;
+		// TODO: Page is int
 		if (request.queryParams("page") != null) {
 			int offset = Integer.parseInt(request.queryParams("page")) * 10;
 			page = Integer.parseInt(request.queryParams("page"));
@@ -79,6 +81,7 @@ public class Tippsundtricks implements Route {
 			}
 			this.m.put("tags", tag_array);
 		} catch (Exception ex) {
+			new errorManager(ex);
 			ex.printStackTrace();
 		}
 		try {
@@ -87,6 +90,7 @@ public class Tippsundtricks implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

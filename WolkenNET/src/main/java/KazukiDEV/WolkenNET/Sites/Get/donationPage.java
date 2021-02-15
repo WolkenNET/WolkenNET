@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
 import spark.Request;
@@ -30,6 +31,7 @@ public class donationPage implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

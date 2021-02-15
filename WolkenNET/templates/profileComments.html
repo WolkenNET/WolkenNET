@@ -21,8 +21,8 @@
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="media-heading">
-                                                                <a href="/beitrag/${contss.sublink}/${contss.userid}"
-                                                                    class="m-r-10"> ${contss.sublink}</a>
+                                                                <#if contss.sublink??><a href="/beitrag/${contss.sublink}/${contss.userid}"
+                                                                    class="m-r-10"> ${contss.sublink}</a></#if>
                                                                
                                                                 
                                                                 <#if contss.locked=1><span class="badge bg-yellow"><i

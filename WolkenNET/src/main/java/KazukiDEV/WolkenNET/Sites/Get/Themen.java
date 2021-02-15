@@ -12,6 +12,7 @@ import java.util.Map;
 import KazukiDEV.WolkenNET.Content.BBCode;
 import KazukiDEV.WolkenNET.Content.Contribution;
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -121,6 +122,7 @@ public class Themen implements Route {
 			m.put("pages", pagesInt);
 
 		} catch (SQLException e1) {
+			new errorManager(e1);
 			e1.printStackTrace();
 		}
 
@@ -130,6 +132,7 @@ public class Themen implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

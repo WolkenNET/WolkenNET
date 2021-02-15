@@ -11,6 +11,7 @@ import java.util.Map;
 import KazukiDEV.WolkenNET.Content.Permissions;
 import KazukiDEV.WolkenNET.Content.Topic;
 import KazukiDEV.WolkenNET.Content.User;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -53,6 +54,7 @@ public class UserManager implements Route {
 			}
 			this.m.put("tags", tag_array);
 		} catch (Exception exception) {
+			new errorManager(exception);
 		}
 		try {
 			Template template = App.cfg.getTemplate("ap/user.html");
@@ -60,6 +62,7 @@ public class UserManager implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

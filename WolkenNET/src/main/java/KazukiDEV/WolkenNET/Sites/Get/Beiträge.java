@@ -11,6 +11,7 @@ import java.util.Map;
 import KazukiDEV.WolkenNET.Content.BBCode;
 import KazukiDEV.WolkenNET.Content.Comment;
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -132,6 +133,7 @@ public class Beiträge implements Route {
 				
 			}
 		} catch (Exception e1) {
+			new errorManager(e1);
 			e1.printStackTrace();
 		}
 
@@ -141,7 +143,7 @@ public class Beiträge implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
-			// Redirect 404
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

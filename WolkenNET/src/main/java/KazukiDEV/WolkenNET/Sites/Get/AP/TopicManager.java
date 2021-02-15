@@ -10,6 +10,7 @@ import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
 import KazukiDEV.WolkenNET.Content.Topic;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -56,6 +57,7 @@ public class TopicManager implements Route {
 				}
 
 			} catch (Exception ex) {
+				new errorManager(ex);
 				ex.printStackTrace();
 			}
 
@@ -78,7 +80,8 @@ public class TopicManager implements Route {
 				}
 				try {
 					mysql.Exec("DELETE FROM `topics` WHERE `id` = ?", id + "");
-				} catch (Exception exception) {
+				} catch (Exception e) {
+					new errorManager(e);
 				}
 
 				response.redirect("/ap/topic");
@@ -105,6 +108,7 @@ public class TopicManager implements Route {
 					}
 					this.m.put("tags", tag_array);
 				} catch (Exception exception) {
+					new errorManager(exception);
 				}
 				try {
 					Template template = App.cfg.getTemplate("ap/topic.html");
@@ -112,6 +116,7 @@ public class TopicManager implements Route {
 					template.process(this.m, out);
 					return out.toString();
 				} catch (IOException | freemarker.template.TemplateException e) {
+					new errorManager(e);
 					throw new RuntimeException(e);
 				}
 			}
@@ -122,6 +127,7 @@ public class TopicManager implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

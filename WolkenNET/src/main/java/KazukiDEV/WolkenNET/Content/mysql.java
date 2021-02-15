@@ -42,6 +42,7 @@ public final class mysql {
 				}
 			}, 0L, 1L, TimeUnit.SECONDS);
 		} catch (Exception ex) {
+			new errorManager(ex);
 			System.out.println(u.mysql + ex.getMessage());
 		}
 	}
@@ -56,6 +57,7 @@ public final class mysql {
 			App.sessionSQL++;
 			return stmt.executeQuery();
 		} catch (Exception e) {
+			new errorManager(e);
 			e.printStackTrace();
 			return null;
 		}
@@ -71,6 +73,7 @@ public final class mysql {
 			App.sessionSQL++;
 			return stmt.execute();
 		} catch (Exception e) {
+			new errorManager(e);
 			e.printStackTrace();
 			return false;
 		}

@@ -14,18 +14,19 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class verweise implements Route {
+public class teamPage implements Route {
 	public Map<String, Object> m = new HashMap<>();
 
-	public verweise() {
+	public teamPage() {
 	}
 
 	public Object handle(Request request, Response response) {
 		Permissions.hasPermissions(request.cookie("session"), this.m, response);
-		m.put("titlebar", "Verweise");
+		m.put("titlebar", "Unser Team");
 		m.put("banner", "/img/banner/team.jpg");
+
 		try {
-			Template template = App.cfg.getTemplate("verweise.html");
+			Template template = App.cfg.getTemplate("team.html");
 			Writer out = new StringWriter();
 			template.process(this.m, out);
 			return out.toString();

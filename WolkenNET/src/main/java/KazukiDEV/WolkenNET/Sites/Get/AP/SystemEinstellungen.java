@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -47,7 +48,7 @@ public class SystemEinstellungen implements Route {
 
 			}
 		} catch (Exception e) {
-
+			new errorManager(e);
 		}
 
 		try {
@@ -56,6 +57,7 @@ public class SystemEinstellungen implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

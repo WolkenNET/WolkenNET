@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -36,6 +37,7 @@ public class Dashboard implements Route {
 				users++;
 			}
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		m.put("registered", users +"");
@@ -48,6 +50,7 @@ public class Dashboard implements Route {
 				topics++;
 			}
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		m.put("topics", topics +"");
@@ -60,6 +63,7 @@ public class Dashboard implements Route {
 				conts++;
 			}
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		m.put("conts", conts +"");
@@ -72,6 +76,7 @@ public class Dashboard implements Route {
 				comments++;
 			}
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		m.put("comments", comments +"");
@@ -85,6 +90,7 @@ public class Dashboard implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

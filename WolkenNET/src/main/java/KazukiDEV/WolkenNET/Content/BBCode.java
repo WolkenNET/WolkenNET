@@ -38,8 +38,8 @@ public class BBCode {
     bbMap.put("\\[img=(.+?),(.+?)\\](.+?)\\[/img\\]", "<img width='$1' height='$2' src='$3' />");
     bbMap.put("\\[email\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$1</a>");
     bbMap.put("\\[email=(.+?)\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$2</a>");
-    bbMap.put("\\[url\\](.+?)\\[/url\\]", "<a href='$1'>$1</a>");
-    bbMap.put("\\[url=(.+?)\\](.+?)\\[/url\\]", "<a href='$1'>$2</a>");
+    bbMap.put("\\[url\\](.+?)\\[/url\\]", "<a target='_blank' href='$1'>$1</a>");
+    bbMap.put("\\[url=(.+?)\\](.+?)\\[/url\\]", "<a target='_blank' href='$1'>$2</a>");
     bbMap.put("\\[youtube\\](.+?)\\[/youtube\\]", "<object width='640' height='380'><param name='movie' value='http://www.youtube.com/v/$1'></param><embed src='http://www.youtube.com/v/$1' type='application/x-shockwave-flash' width='640' height='380'></embed></object>");
     bbMap.put("\\[video\\](.+?)\\[/video\\]", "<video src='$1' />");
     bbMap.put("\\[B\\](.+?)\\[/B\\]", "<strong>$1</strong>");
@@ -65,8 +65,8 @@ public class BBCode {
     bbMap.put("\\[IMG=(.+?),(.+?)\\](.+?)\\[/IMG\\]", "<img width='$1' height='$2' src='$3' />");
     bbMap.put("\\[EMAIL\\](.+?)\\[/EMAIL\\]", "<a href='mailto:$1'>$1</a>");
     bbMap.put("\\[EMAIL=(.+?)\\](.+?)\\[/EMAIL\\]", "<a href='mailto:$1'>$2</a>");
-    bbMap.put("\\[URL\\](.+?)\\[/URL\\]", "<a href='$1'>$1</a>");
-    bbMap.put("\\[URL=(.+?)\\](.+?)\\[/URL\\]", "<a href='$1'>$2</a>");
+    bbMap.put("\\[URL\\](.+?)\\[/URL\\]", "<a target='_blank' href='$1'>$1</a>");
+    bbMap.put("\\[URL=(.+?)\\](.+?)\\[/URL\\]", "<a target='_blank' href='$1'>$2</a>");
     bbMap.put("\\[YOUTUBE\\](.+?)\\[/YOUTUBE\\]", "<object width='640' height='380'><param name='movie' value='http://www.youtube.com/v/$1'></param><embed src='http://www.youtube.com/v/$1' type='application/x-shockwave-flash' width='640' height='380'></embed></object>");
     bbMap.put("\\[YOUTUBE\\](.+?)\\[/YOUTUBE\\]", "<video src='$1' />");
     for (Map.Entry<String, String> entry : bbMap.entrySet())

@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import KazukiDEV.WolkenNET.Content.Auth;
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Content.reCaptcha;
 import spark.Request;
@@ -46,6 +47,7 @@ public class Register implements Route {
 			}
 			
 		} catch (Exception e1) {
+			new errorManager(e1);
 			e1.printStackTrace();
 		}
 		
@@ -111,13 +113,15 @@ public class Register implements Route {
 		    java.sql.Date date=new java.sql.Date(millis);  
 		    
 	
-		
+		    String extraSQL = "INSERT INTO `users_extra`(`bbcode_text`) VALUES (?)";
+		    mysql.Exec(extraSQL, "");
 	
 			String sql = "INSERT INTO `users`(`username`, `email`, `password_md5`, `registered_on`, `last_login`, `country`, `permissions`, `avatar`, `session`) VALUES (?,?,?,?,?,?,?,?,?)";
-			mysql.Exec(sql, username, email, MD5(password), date.toString(), "", country, "1", "", session);
+			mysql.Exec(sql, username, email, MD5(password), date.toString(), "", country, "1", 1+"", session);
 			response.redirect("/?open=login");
 			return "";
 		}catch(Exception e) {
+			new errorManager(e);
 			e.printStackTrace();
 			response.redirect("/?r=re&open=register");
 			return null;
@@ -133,6 +137,7 @@ public class Register implements Route {
 				sb.append(Integer.toHexString(array[i] & 0xFF | 0x100).substring(1, 3));
 			return sb.toString();
 		} catch (NoSuchAlgorithmException noSuchAlgorithmException) {
+			new errorManager(noSuchAlgorithmException);
 			return null;
 		}
 	}

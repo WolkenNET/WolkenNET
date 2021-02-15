@@ -10,6 +10,7 @@ import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
 import KazukiDEV.WolkenNET.Content.Topic;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
@@ -75,7 +76,8 @@ public class KlinikUndÄrzte implements Route {
 				tag_array.add(t);
 			}
 			this.m.put("tags", tag_array);
-		} catch (Exception exception) {
+		} catch (Exception e) {
+			new errorManager(e);
 		}
 
 		try {
@@ -84,6 +86,7 @@ public class KlinikUndÄrzte implements Route {
 			template.process(this.m, out);
 			return out.toString();
 		} catch (IOException | freemarker.template.TemplateException e) {
+			new errorManager(e);
 			throw new RuntimeException(e);
 		}
 	}

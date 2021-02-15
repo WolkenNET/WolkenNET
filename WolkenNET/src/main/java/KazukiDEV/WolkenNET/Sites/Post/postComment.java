@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import spark.Request;
 import spark.Response;
@@ -49,6 +50,7 @@ public class postComment implements Route {
 			}
 			
 		} catch (SQLException e) {
+			new errorManager(e);
 			e.printStackTrace();
 		}
 		

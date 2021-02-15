@@ -62,6 +62,17 @@ $(document).ready(function () {
 
     $(function () {
 
+        $('body').append($('<div id="captcha_container" class="google-cpatcha"></div>'));
+        setTimeout(function () {
+            try {
+                grecaptcha.render('captcha_container_post', {
+                    'sitekey': recaptcha
+                });
+            } catch (error) {
+            }
+
+        }, 1000);
+
 
         if ($('#edi').length == 0) {
             if (loggedin) {
@@ -111,9 +122,9 @@ $(document).ready(function () {
                 if (l == "li") {
                     document.getElementById('inr').innerHTML = 'Die angegebenen Daten sind Fehlerhaft.' + btn
                 } else if (l == "ll") {
-                    document.getElementById('inr').innerHTML = 'Dein GerÃ¤t wurde fÃ¼r das einloggen kurzzeitig gesperrt.' + btn
+                    document.getElementById('inr').innerHTML = 'Dein Gerät wurde für das einloggen kurzzeitig gesperrt.' + btn
                 } else if (l == "lub") {
-                    document.getElementById('inr').innerHTML = 'Dein Nutzer Account wurde gesperrt, fÃ¼r weitere Informationen schreibe uns eine Email <a href="mailto:info@wolkennet.de">info@wolkennet.de</a>' + btn
+                    document.getElementById('inr').innerHTML = 'Dein Nutzer Account wurde gesperrt, für weitere Informationen schreibe uns eine Email <a href="mailto:info@wolkennet.de">info@wolkennet.de</a>' + btn
                 } else if (l == "lnp") {
                     document.getElementById('inr').innerHTML = 'Du hast keine Berechtigung um dich dort zu bewegen' + btn
                 } else if (l == "lcf") {
@@ -138,9 +149,9 @@ $(document).ready(function () {
                 } else if (r == "rie") {
                     document.getElementById('inrr').innerHTML = 'Deine Email Adresse ist fehlerhaft.' + btn
                 } else if (r == "re") {
-                    document.getElementById('inrr').innerHTML = 'Ein interner Fehler ist aufgetreten, wir versuchen das so schnell wie mÃ¶glich zu reparieren.' + btn
+                    document.getElementById('inrr').innerHTML = 'Ein interner Fehler ist aufgetreten, wir versuchen das so schnell wie möglich zu reparieren.' + btn
                 } else if (r == "rd") {
-                    document.getElementById('inrr').innerHTML = 'Registrierungen sind momentan deaktiviert, versuche es bitte spÃ¤ter nochmal.' + btn
+                    document.getElementById('inrr').innerHTML = 'Registrierungen sind momentan deaktiviert, versuche es bitte später nochmal.' + btn
                 } else if (r == "rcf") {
                     document.getElementById('inrr').innerHTML = 'Du musst das Captcha ausfüllen.' + btn
                 }

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Content.reCaptcha;
 import spark.Request;
@@ -30,6 +31,7 @@ public class Login implements Route {
 			}
 			
 		} catch (Exception captchaError) {
+			new errorManager(captchaError);
 			captchaError.printStackTrace();
 		}
 
@@ -58,6 +60,7 @@ public class Login implements Route {
 				return null;
 			}
 		} catch (Exception e) {
+			new errorManager(e);
 			e.printStackTrace();
 			response.redirect("/?l=lie&open=login");
 			return null;
@@ -76,6 +79,7 @@ public class Login implements Route {
 			return sb.toString();
 		} catch (NoSuchAlgorithmException noSuchAlgorithmException) {
 			// TODO: Error listen
+			new errorManager(noSuchAlgorithmException);
 			return null;
 		}
 	}

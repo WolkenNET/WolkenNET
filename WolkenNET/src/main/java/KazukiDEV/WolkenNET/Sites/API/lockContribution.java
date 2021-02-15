@@ -1,11 +1,11 @@
 package KazukiDEV.WolkenNET.Sites.API;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import KazukiDEV.WolkenNET.Content.Moderation;
 import KazukiDEV.WolkenNET.Content.Permissions;
+import KazukiDEV.WolkenNET.Content.errorManager;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -29,11 +29,10 @@ public class lockContribution implements Route {
 		String cID = request.queryParams("id");
 		try {
 			Moderation.lockContribution(Integer.parseInt(cID));
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			new errorManager(e);
 		}
+			
 
 		// TODO: Weiterleiten
 		return "Contribution wurde gelockt";

@@ -6,5 +6,7 @@
 	"mysqlusername": "root",
 	"mysqlport": "3306",
 	"mysqldatabase": "wolkennet",
-	"mysqlpassword": ""
+	"mysqlpassword": "",
+	"mail": "info@wolkennet.de",
+	"mailpw": "Start123!"
 }
