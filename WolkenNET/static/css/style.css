@@ -268,6 +268,13 @@
   }
 }
 
+.bquote {
+  color: #bdc3c7;
+  background-color: #2c3e50;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
 body {
     font-family: "Nunito Sans";
 }
@@ -303,7 +310,7 @@ body {
 }
 @media (min-width: 700px) {
 .huge.heading {
-    height: 250px;
+    height: 200px;
 }}
 .text-home {
     padding-bottom: 20px;
@@ -5378,6 +5385,7 @@ body{
     display: block;
   }
 }
+
 
 .img-sm {
   width: 46px;

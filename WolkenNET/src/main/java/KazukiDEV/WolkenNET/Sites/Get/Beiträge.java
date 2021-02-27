@@ -15,6 +15,7 @@ import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -142,7 +143,7 @@ public class Beiträge implements Route {
 			Writer out = new StringWriter();
 			template.process(this.m, out);
 			return out.toString();
-		} catch (IOException | freemarker.template.TemplateException e) {
+		} catch (IOException | TemplateException e) {
 			new errorManager(e);
 			throw new RuntimeException(e);
 		}

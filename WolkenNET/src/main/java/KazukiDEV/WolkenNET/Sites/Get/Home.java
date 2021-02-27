@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import KazukiDEV.WolkenNET.Content.errorManager;
 import KazukiDEV.WolkenNET.Content.mysql;
 import KazukiDEV.WolkenNET.Main.App;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -28,24 +28,21 @@ public class Home implements Route {
 		m.put("titlebar", "Home");
 		m.put("banner", "/img/banner/home.jpg");
 
-		String registered_users = "SELECT * FROM `users`";
+		String registeredCountSQL = "SELECT COUNT(*) AS total FROM `users`";
+		ResultSet registeredCountRS = mysql.Query(registeredCountSQL);
 		int users = 0;
 		try {
-			ResultSet up_next_rs = mysql.Query(registered_users);
-			while (up_next_rs.next()) {
-				users++;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		m.put("registered", new StringBuilder().append(users).toString());
+			registeredCountRS.next();
+			users = registeredCountRS.getInt("total");
+		}catch(Exception e) { new errorManager(e); }
+			m.put("registered", users + "");
 
 		try {
 			Template template = App.cfg.getTemplate("home.html");
 			Writer out = new StringWriter();
 			template.process(this.m, out);
 			return out.toString();
-		} catch (IOException | freemarker.template.TemplateException e) {
+		} catch (IOException | TemplateException e) {
 			new errorManager(e);
 			throw new RuntimeException(e);
 		}

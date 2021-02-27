@@ -20,20 +20,22 @@ public class sitemapGenerator {
 		wsg.addUrl("https://wolkennet.de/therapien");
 		wsg.addUrl("https://wolkennet.de/klinikundaerzte");
 		wsg.addUrl("https://wolkennet.de/forenregeln");
-		wsg.addUrl("https://wolkennet.de/spenden");
+		wsg.addUrl("https://wolkennet.de/support");
 		wsg.addUrl("https://wolkennet.de/medikamente");
 		wsg.addUrl("https://wolkennet.de/krankheiten_symptome");
+		wsg.addUrl("https://wolkennet.de/team");
+		wsg.addUrl("https://wolkennet.de/verweise");
 		
 		String topicSQL ="SELECT `sublink` FROM `topics`";
 		ResultSet topicRS = mysql.Query(topicSQL);
 		while(topicRS.next()) {
-			wsg.addUrl("https://wolkennet.de/thema/" + topicRS.getString("sublink").replaceAll(" ", "%20"));
+			wsg.addUrl("https://wolkennet.de/thema/" + topicRS.getString("sublink").replaceAll(" ", "%20").toLowerCase());
 		}
 		
 		String contSQL = "SELECT `user_id`, `sublink` FROM `contributions`";
 		ResultSet contRS = mysql.Query(contSQL);
 		while(contRS.next()) {
-			wsg.addUrl("https://wolkennet.de/beitrag/" + contRS.getString("sublink").replaceAll(" ", "%20") + "/" + contRS.getInt("user_id"));
+			wsg.addUrl("https://wolkennet.de/beitrag/" + contRS.getString("sublink").replaceAll(" ", "%20").toLowerCase() + "/" + contRS.getInt("user_id"));
 		}
 		
 		String userSQL = "SELECT `username` FROM `users`";
@@ -41,9 +43,9 @@ public class sitemapGenerator {
 		while(userRS.next()) {
 			String username = userRS.getString("username");
 			wsg.addUrl("https://wolkennet.de/profil/" +username);
-			wsg.addUrl("https://wolkennet.de/profil/" +username + "/list");
-			wsg.addUrl("https://wolkennet.de/profil/" +username + "/comments");
 		}
+		
+		u.s.println(u.info + "Sitemap wurde überschrieben");
 		
 		wsg.write();
 	}

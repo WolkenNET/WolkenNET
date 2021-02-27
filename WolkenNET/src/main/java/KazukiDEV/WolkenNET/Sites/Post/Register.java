@@ -3,6 +3,7 @@ package KazukiDEV.WolkenNET.Sites.Post;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -107,7 +108,7 @@ public class Register implements Route {
 		    }
 		    
 		    long millis=System.currentTimeMillis();  
-		    java.sql.Date date=new java.sql.Date(millis);  
+		    Date date = new Date(millis);  
 		    
 	
 		    String extraSQL = "INSERT INTO `users_extra`(`bbcode_text`) VALUES (?)";

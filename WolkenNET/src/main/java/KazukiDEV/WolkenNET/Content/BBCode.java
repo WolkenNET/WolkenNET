@@ -25,7 +25,7 @@ public class BBCode {
     bbMap.put("\\[li\\](.+?)\\[/li\\]", "<li class=\"li-p\">$1</li>");
     
     bbMap.put("\\[indent\\](.+?)\\[/indent\\]", "<div style=\"text-indent: 50px;\">$1</div>");
-    bbMap.put("\\[quote\\](.+?)\\[/quote\\]", "<blockquote>$1</blockquote>");
+    bbMap.put("\\[quote\\](.+?)\\[/quote\\]", "<blockquote class='bquote'>„$1“</blockquote>");
     bbMap.put("\\[p\\](.+?)\\[/p\\]", "<p>$1</p>");
     bbMap.put("\\[p=(.+?),(.+?)\\](.+?)\\[/p\\]", "<p style='text-indent:$1px;line-height:$2%;'>$3</p>");
     bbMap.put("\\[center\\](.+?)\\[/center\\]", "<div align='center'>$1</div>");
@@ -52,7 +52,7 @@ public class BBCode {
     bbMap.put("\\[H5\\](.+?)\\[/H5\\]", "<h5>$1</h5>");
     bbMap.put("\\[H6\\](.+?)\\[/H6\\]", "<h6>$1</h6>");
     bbMap.put("\\[INDENT\\](.+?)\\[/INDENT\\]", "<div style=\"text-indent: 50px;\">$1</div>");
-    bbMap.put("\\[QUOTE\\](.+?)\\[/QUOTE\\]", "<blockquote>$1</blockquote>");
+    bbMap.put("\\[QUOTE\\](.+?)\\[/QUOTE\\]", "<blockquote class='bquote'>„$1“</blockquote>");
     bbMap.put("\\[P\\](.+?)\\[/P\\]", "<p>$1</p>");
     bbMap.put("\\[P=(.+?),(.+?)\\](.+?)\\[/P\\]", "<p style='text-indent:$1px;line-height:$2%;'>$3</p>");
     bbMap.put("\\[CENTER\\](.+?)\\[/CENTER\\]", "<div align='center'>$1</div>");
@@ -80,7 +80,7 @@ public class BBCode {
 	    bbMap.put("\\[b\\](.+?)\\[/b\\]", "<strong>$1</strong>");
 	    bbMap.put("\\[i\\](.+?)\\[/i\\]", "<span style='font-style:italic;'>$1</span>");
 	    bbMap.put("\\[u\\](.+?)\\[/u\\]", "<span style='text-decoration:underline;'>$1</span>");
-	    bbMap.put("\\[quote\\](.+?)\\[/quote\\]", "<blockquote>$1</blockquote>");
+	    bbMap.put("\\[quote\\](.+?)\\[/quote\\]", "<blockquote class='bquote'>„$1“</blockquote>");
 	    bbMap.put("\\[p\\](.+?)\\[/p\\]", "<p>$1</p>");
 	    bbMap.put("\\[color=(.+?)\\](.+?)\\[/color\\]", "<span style='color:$1;'>$2</span>");
 	    bbMap.put("\\[size=(.+?)\\](.+?)\\[/size\\]", "<span style='font-size:$1;'>$2</span>");
@@ -94,7 +94,7 @@ public class BBCode {
 	    bbMap.put("\\[B\\](.+?)\\[/B\\]", "<strong>$1</strong>");
 	    bbMap.put("\\[I\\](.+?)\\[/I\\]", "<span style='font-style:italic;'>$1</span>");
 	    bbMap.put("\\[U\\](.+?)\\[/U\\]", "<span style='text-decoration:underline;'>$1</span>");
-	    bbMap.put("\\[QUOTE\\](.+?)\\[/QUOTE\\]", "<blockquote>$1</blockquote>");
+	    bbMap.put("\\[QUOTE\\](.+?)\\[/QUOTE\\]", "<blockquote class='bquote'>„$1“</blockquote>");
 	    bbMap.put("\\[CENTER\\](.+?)\\[/CENTER\\]", "<div align='center'>$1");
 	    bbMap.put("\\[ALIGN=(.+?)\\](.+?)\\[/ALIGN\\]", "<div align='$1'>$2");
 	    bbMap.put("\\[COLOR=(.+?)\\](.+?)\\[/COLOR\\]", "<span style='color:$1;'>$2</span>");
