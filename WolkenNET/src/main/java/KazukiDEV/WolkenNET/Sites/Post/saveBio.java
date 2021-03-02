@@ -19,8 +19,7 @@ public class saveBio implements Route {
 
 	public Object handle(Request request, Response response) {
 		if(Permissions.hasPermissions(request, this.m, response) == false) {
-			//TODO: Login Fenster öffnen
-			response.redirect("/");
+			response.redirect("/?l=lnp&open=login");
 			return null;
 		}
 		

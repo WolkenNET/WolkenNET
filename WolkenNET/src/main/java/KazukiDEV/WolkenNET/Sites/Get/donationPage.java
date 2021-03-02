@@ -22,7 +22,7 @@ public class donationPage implements Route {
 
 	public Object handle(Request request, Response response) {
 		Permissions.hasPermissions(request, this.m, response);
-		m.put("titlebar", "Unterstütze dem Projekt");
+		m.put("titlebar", "Unterstütze das Projekt");
 		m.put("banner", "/img/banner/wolken2.jpg");
 
 		try {

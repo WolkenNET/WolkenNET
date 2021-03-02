@@ -38,6 +38,7 @@ import KazukiDEV.WolkenNET.Sites.Get.profileSettings;
 import KazukiDEV.WolkenNET.Sites.Get.teamPage;
 import KazukiDEV.WolkenNET.Sites.Get.verweise;
 import KazukiDEV.WolkenNET.Sites.Get.AP.Dashboard;
+import KazukiDEV.WolkenNET.Sites.Get.AP.RegisteredTable;
 import KazukiDEV.WolkenNET.Sites.Get.AP.SystemEinstellungen;
 import KazukiDEV.WolkenNET.Sites.Get.AP.TopicManager;
 import KazukiDEV.WolkenNET.Sites.Get.AP.UserManager;
@@ -118,6 +119,7 @@ public class App {
 		getroutes.put("/ap/topic/create", new TopicManager("create"));
 		getroutes.put("/ap/topic/edit", new TopicManager("edit"));
 		getroutes.put("/ap/user", new UserManager(""));
+		getroutes.put("/ap/stats", new RegisteredTable());
 
 		// API
 		getroutes.put("/ap/api/delete/contribution", new deleteContribution());

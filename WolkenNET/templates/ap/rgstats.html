@@ -1,0 +1,26 @@
+<#include "base.html">
+
+<div class="col">
+            
+    <div class="container-fluid">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Hinzugewonende Nutzer</th>
+              </tr>
+            </thead>
+            <tbody>
+                <#list stm>
+                <#items as stat>
+                
+                <tr>
+                    <th scope="row">${stat.date}</th>
+                    <td style="color:greenyellow">+${stat.value}</td>
+                  </tr>
+
+                   </#items>
+                   </#list>
+            </tbody>
+    </div>
+</div>
